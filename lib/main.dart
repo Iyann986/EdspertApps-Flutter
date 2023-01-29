@@ -1,3 +1,5 @@
+import 'package:finalproject_edspertapp/ui/pages/auth/login_page/login_page.dart';
+import 'package:finalproject_edspertapp/ui/pages/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,11 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      //home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const SplashScreen(),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => const SplashScreen(),
+        "/login": (context) => const LoginPage()
+      },
     );
   }
 }
