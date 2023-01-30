@@ -1,4 +1,5 @@
 import 'package:finalproject_edspertapp/ui/constants/r.dart';
+import 'package:finalproject_edspertapp/ui/pages/auth/register_page/register_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,13 +14,14 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: R.colors.white,
+      backgroundColor: R.colors.whiteTexts,
       body: Padding(
         padding: const EdgeInsets.all(32.0),
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
@@ -58,6 +60,9 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const Spacer(),
             ButtonLogin(
+              onTap: () {
+                Navigator.of(context).pushNamed(RegisterPage.route);
+              },
               backgroundColor: Colors.white,
               borderColor: R.colors.toscaBorderSide,
               child: Row(
@@ -79,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             ButtonLogin(
+              onTap: () {},
               backgroundColor: Colors.black,
               borderColor: R.colors.blackBorderSide,
               child: Row(
@@ -112,11 +118,13 @@ class ButtonLogin extends StatelessWidget {
     required this.backgroundColor,
     required this.child,
     required this.borderColor,
+    required this.onTap,
   }) : super(key: key);
 
   final Color backgroundColor;
   final Widget child;
   final Color borderColor;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +140,7 @@ class ButtonLogin extends StatelessWidget {
           ),
           fixedSize: Size(MediaQuery.of(context).size.width * 0.8, 50),
         ),
-        onPressed: () {},
+        onPressed: onTap,
         child: child,
       ),
     );
