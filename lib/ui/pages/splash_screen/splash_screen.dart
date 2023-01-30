@@ -25,7 +25,8 @@ class SplashScreen extends StatelessWidget {
       body: Center(
         child: Image.asset(
           R.assets.icSplash,
-          width: 300,
+          width: 250,
+          height: 250,
         ),
       ),
     );

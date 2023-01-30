@@ -9,4 +9,5 @@ class ThemeColor {
   Color blackBorderSide = Color(0xff1A1F26);
   Color greyBorderEmail = Color(0xffD6D6D6);
   Color greyHintText = Color(0xffAAAAAA);
+  Color greyText = Color(0xff8E8E8E);
 }

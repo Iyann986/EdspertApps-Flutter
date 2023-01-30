@@ -1,6 +1,7 @@
 import 'package:finalproject_edspertapp/ui/constants/r.dart';
 import 'package:finalproject_edspertapp/ui/pages/auth/register_page/register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: R.colors.whiteTexts,
+      backgroundColor: Color(0xffF3F7F8),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
         child: Column(
@@ -43,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Text(
               R.strings.welcome,
-              style: const TextStyle(
+              style: GoogleFonts.poppins().copyWith(
                 fontSize: 22,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
@@ -52,11 +53,10 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               R.strings.loginDesc,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xff6A7483),
-              ),
+              style: GoogleFonts.poppins().copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xff6A7483)),
             ),
             const Spacer(),
             ButtonLogin(
