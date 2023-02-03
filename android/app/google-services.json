@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "212127515809",
+    "project_id": "edspertapps",
+    "storage_bucket": "edspertapps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212127515809:android:af792770a927570e37dce0",
+        "android_client_info": {
+          "package_name": "com.example.finalproject_edspertapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212127515809-64m849em6jpnuk6er9g22g202nknbc2k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYOBm8neO5GRXkOkDj0xB2M-XcVE_8fBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212127515809-64m849em6jpnuk6er9g22g202nknbc2k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

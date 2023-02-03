@@ -1,4 +1,5 @@
 import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/home_page.dart';
+import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/list_paket_soal_page.dart';
 import 'package:flutter/material.dart';
 
 class HomeMapelWidget extends StatelessWidget {
@@ -17,7 +18,9 @@ class HomeMapelWidget extends StatelessWidget {
           itemCount: 6,
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed(ListPaketSoalPage.route);
+              },
               child: MapelWidget(),
             );
           },

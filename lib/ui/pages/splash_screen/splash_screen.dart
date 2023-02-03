@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:finalproject_edspertapp/ui/constants/r.dart';
 import 'package:finalproject_edspertapp/ui/pages/auth/login_page/login_page.dart';
+import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/bottom_nav.dart';
+import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -13,10 +16,12 @@ class SplashScreen extends StatelessWidget {
     Timer(
       Duration(seconds: 5),
       () {
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(builder: (context) => LoginPage()),
-        // );
-        Navigator.of(context).pushReplacementNamed(LoginPage.route);
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          Navigator.of(context).pushReplacementNamed(BottomNavBar.route);
+        } else {
+          Navigator.of(context).pushReplacementNamed(LoginPage.route);
+        }
       },
     );
 
