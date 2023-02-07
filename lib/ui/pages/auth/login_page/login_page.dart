@@ -1,5 +1,11 @@
 import 'package:finalproject_edspertapp/ui/constants/r.dart';
+import 'package:finalproject_edspertapp/ui/data/models/network_response.dart';
+import 'package:finalproject_edspertapp/ui/data/models/user_response.dart';
+import 'package:finalproject_edspertapp/ui/data/repository/auth_repository.dart';
+import 'package:finalproject_edspertapp/ui/helpers/preference_helper.dart';
 import 'package:finalproject_edspertapp/ui/pages/auth/register_page/register_page.dart';
+import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/bottom_nav.dart';
+import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -85,7 +91,16 @@ class _LoginPageState extends State<LoginPage> {
 
                 final user = FirebaseAuth.instance.currentUser;
                 if (user != null) {
-                  Navigator.of(context).pushNamed(RegisterPage.route);
+                  final dataUser = await AuthRepository().getUserResponse();
+                  if (dataUser.status == Status.success) {
+                    final data = UserResponse.fromJson(dataUser.data!);
+                    if (data.status == 1) {
+                      await PreferenceHelper().setUserData(data.data!);
+                      Navigator.of(context).pushNamed(BottomNavBar.route);
+                    } else {
+                      Navigator.of(context).pushNamed(RegisterPage.route);
+                    }
+                  }
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -164,7 +179,7 @@ class ButtonLogin extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: backgroundColor,
+          backgroundColor: backgroundColor,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),

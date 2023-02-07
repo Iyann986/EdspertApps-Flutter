@@ -1,4 +1,8 @@
 import 'package:finalproject_edspertapp/ui/constants/r.dart';
+import 'package:finalproject_edspertapp/ui/data/models/banner_response.dart';
+import 'package:finalproject_edspertapp/ui/data/models/course_response.dart';
+import 'package:finalproject_edspertapp/ui/data/models/network_response.dart';
+import 'package:finalproject_edspertapp/ui/data/repository/Latihan_soal_api.dart';
 import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/home_mapel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +15,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  CourseResponse? courseResponse;
+  getCourse() async {
+    final courseResult = await LatihanSoalApi().getCourse();
+    if (courseResult.status == Status.success) {
+      courseResponse = CourseResponse.fromJson(courseResult.data!);
+      setState(() {});
+    }
+  }
+
+  BannerResponse? bannerResponse;
+  getBanner() async {
+    final banner = await LatihanSoalApi().getBanner();
+    if (banner.status == Status.success) {
+      bannerResponse = BannerResponse.fromJson(banner.data!);
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCourse();
+    getBanner();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,19 +69,28 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 11,
                   ),
-                  Container(
-                    height: 150,
-                    child: ListView.builder(
-                      itemCount: 5,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Image.asset(R.assets.imgBanner),
-                        );
-                      },
-                    ),
-                  ),
+                  bannerResponse == null
+                      ? Container(
+                          height: 70,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        )
+                      : Container(
+                          height: 150,
+                          child: ListView.builder(
+                            itemCount: bannerResponse!.data!.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              final currentBanner =
+                                  bannerResponse!.data![index];
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Image.network(currentBanner.eventImage!),
+                              );
+                            },
+                          ),
+                        ),
                 ],
               ),
             ),
