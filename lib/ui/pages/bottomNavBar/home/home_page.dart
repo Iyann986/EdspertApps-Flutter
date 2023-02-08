@@ -4,6 +4,7 @@ import 'package:finalproject_edspertapp/ui/data/models/course_response.dart';
 import 'package:finalproject_edspertapp/ui/data/models/network_response.dart';
 import 'package:finalproject_edspertapp/ui/data/repository/Latihan_soal_api.dart';
 import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/home_mapel_widget.dart';
+import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/list_paket_soal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             _buildUserHomeProfile(),
             _buildTopBannerHome(context),
-            _buildHomeListMapel(),
+            _buildHomeListMapel(courseResponse),
             Container(
               // margin: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -72,6 +73,7 @@ class _HomePageState extends State<HomePage> {
                   bannerResponse == null
                       ? Container(
                           height: 70,
+                          width: double.infinity,
                           child: Center(
                             child: CircularProgressIndicator(),
                           ),
@@ -86,7 +88,11 @@ class _HomePageState extends State<HomePage> {
                                   bannerResponse!.data![index];
                               return Padding(
                                 padding: const EdgeInsets.only(left: 20),
-                                child: Image.network(currentBanner.eventImage!),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child:
+                                      Image.network(currentBanner.eventImage!),
+                                ),
                               );
                             },
                           ),
@@ -103,7 +109,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container _buildHomeListMapel() {
+  Container _buildHomeListMapel(CourseResponse? list) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 21),
       child: Column(
@@ -120,7 +126,11 @@ class _HomePageState extends State<HomePage> {
               Spacer(),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(HomeMapelWidget.route);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return HomeMapelWidget(mapel: courseResponse!);
+                    },
+                  ));
                 },
                 child: Text(
                   "Lihat Semua",
@@ -133,9 +143,37 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          MapelWidget(),
-          MapelWidget(),
-          MapelWidget(),
+          list == null
+              ? Container(
+                  height: 70,
+                  width: double.infinity,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: list.data!.length > 3 ? 3 : list.data!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final currentMapel = list.data![index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ListPaketSoalPage(id: currentMapel.courseId!),
+                          ),
+                        );
+                      },
+                      child: MapelWidget(
+                        title: currentMapel.courseName!,
+                        totalPaket: currentMapel.jumlahMateri!,
+                        totalDone: currentMapel.jumlahDone!,
+                      ),
+                    );
+                  },
+                )
         ],
       ),
     );
@@ -227,7 +265,14 @@ class _HomePageState extends State<HomePage> {
 class MapelWidget extends StatelessWidget {
   const MapelWidget({
     super.key,
+    required this.title,
+    required this.totalDone,
+    required this.totalPaket,
   });
+
+  final String title;
+  final int? totalDone;
+  final int? totalPaket;
 
   @override
   Widget build(BuildContext context) {
@@ -258,14 +303,14 @@ class MapelWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Matematika",
+                  title,
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
                 ),
                 Text(
-                  "0/50 Paket latihan soal",
+                  "$totalDone/$totalPaket Paket latihan soal",
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
                     fontSize: 13,

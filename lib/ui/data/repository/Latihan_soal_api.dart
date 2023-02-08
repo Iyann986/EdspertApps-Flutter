@@ -54,8 +54,19 @@ class LatihanSoalApi {
     final result = await _getRequest(
       endpoint: Urls.courseList,
       param: {
-        "major_name": "IPA",
-        "email": UserEmail.getUserEmail(),
+        "course_id": "IPA",
+        "user_email": UserEmail.getUserEmail(),
+      },
+    );
+    return result;
+  }
+
+  Future<NetworkResponse> getExerciseList(id) async {
+    final result = await _getRequest(
+      endpoint: Urls.exerciseList,
+      param: {
+        "course_id": id,
+        "user_email": UserEmail.getUserEmail(),
       },
     );
     return result;

@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
         LoginPage.route: (context) => const LoginPage(),
         RegisterPage.route: (context) => const RegisterPage(),
         BottomNavBar.route: (context) => const BottomNavBar(),
-        HomeMapelWidget.route: (context) => const HomeMapelWidget(),
-        ListPaketSoalPage.route: (context) => const ListPaketSoalPage(),
+        //HomeMapelWidget.route: (context) => const HomeMapelWidget(),
+        //ListPaketSoalPage.route: (context) => const ListPaketSoalPage(),
       },
     );
   }

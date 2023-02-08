@@ -86,11 +86,11 @@ class _RegisterPageState extends State<RegisterPage> {
               final json = {
                 "email": emailController.text,
                 "nama_lengkap": fullNameController.text,
-                "nama_sekolah": sekolahNameController,
+                "nama_sekolah": sekolahNameController.text,
                 "kelas": selectedClass,
                 "gender": gender,
                 "foto": UserEmail.getUserPhotoUrl(),
-                //"jenjang": schoolLevel,
+                "jenjang": schoolLevel,
               };
               print(json);
               final result = await AuthRepository().postRegister(json);
