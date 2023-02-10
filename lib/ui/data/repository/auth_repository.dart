@@ -67,4 +67,12 @@ class AuthRepository {
     );
     return result;
   }
+
+  Future<NetworkResponse> postUpdateUser(body) async {
+    final result = await _postRequest(
+      endpoint: Urls.usersUpdateProfile,
+      body: body,
+    );
+    return result;
+  }
 }

@@ -10,17 +10,17 @@ import 'package:finalproject_edspertapp/ui/pages/auth/login_page/login_page.dart
 import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({Key? key}) : super(key: key);
   static String route = "register_page";
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
 enum Gender { lakilaki, perempuan }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _EditProfilePageState extends State<EditProfilePage> {
   List<String> classSma = ["10", "11", "12"];
 
   String gender = "Laki-laki";
@@ -39,9 +39,14 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() {});
   }
 
-  initDataUser() {
+  initDataUser() async {
     emailController.text = UserEmail.getUserEmail()!;
-    fullNameController.text = UserEmail.getUserDisplayName()!;
+    //fullNameController.text = UserEmail.getUserDisplayName()!;
+    final dataUser = await PreferenceHelper().getUserData();
+    fullNameController.text = dataUser!.userName!;
+    sekolahNameController.text = dataUser.userAsalSekolah!;
+    gender = dataUser.userGender!;
+
     setState(() {});
   }
 
@@ -54,34 +59,32 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF0F3F5),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight + 40),
-        child: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          // backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
-          title: Text(
-            "Yuk isi data diri",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(25.0),
-              bottomRight: Radius.circular(25.0),
-            ),
+      //backgroundColor: Color(0xffF0F3F5),
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: R.colors.primary,
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text(
+          "Edit Akun",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.only(
+        //     bottomLeft: Radius.circular(25.0),
+        //     bottomRight: Radius.circular(25.0),
+        //   ),
+        // ),
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 20),
           child: ButtonLogin(
+            radius: 8,
             onTap: () async {
               final json = {
                 "email": emailController.text,
@@ -93,13 +96,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 // "jenjang": schoolLevel,
               };
               print(json);
-              final result = await AuthRepository().postRegister(json);
+              final result = await AuthRepository().postUpdateUser(json);
               if (result.status == Status.success) {
                 final registerResult = UserResponse.fromJson(result.data!);
                 if (registerResult.status == 1) {
                   await PreferenceHelper().setUserData(registerResult.data!);
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      BottomNavBar.route, (context) => false);
+                  Navigator.pop(context, true);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -118,9 +120,9 @@ class _RegisterPageState extends State<RegisterPage> {
             backgroundColor: R.colors.primary,
             borderColor: R.colors.toscaBorderSide,
             child: Text(
-              R.strings.daftar,
+              R.strings.perbarui,
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: R.colors.whiteTexts,
               ),
@@ -134,14 +136,14 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RegisterTextField(
+              EditProfileTextField(
                 controller: emailController,
                 hintText: "Masukan Email Anda",
                 title: "Email",
                 enabled: false,
               ),
               SizedBox(height: 15),
-              RegisterTextField(
+              EditProfileTextField(
                 hintText: "Masukan Nama Lengkap Anda",
                 title: "Nama Lengkap",
                 controller: fullNameController,
@@ -150,7 +152,8 @@ class _RegisterPageState extends State<RegisterPage> {
               Text(
                 "Jenis Kelamin",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
+                  color: R.colors.greySubtitle,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -163,9 +166,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          primary: gender == "Laki-laki"
-                              ? R.colors.primary
-                              : Colors.white,
+                          primary:
+                              gender.toLowerCase() == "Laki-laki".toLowerCase()
+                                  ? R.colors.primary
+                                  : Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             side: BorderSide(
@@ -182,7 +186,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
-                            color: gender == "Laki-laki"
+                            color: gender.toLowerCase() ==
+                                    "Laki-laki".toLowerCase()
                                 ? Colors.white
                                 : Colors.black,
                           ),
@@ -229,7 +234,8 @@ class _RegisterPageState extends State<RegisterPage> {
               Text(
                 "Kelas",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
+                  color: R.colors.greySubtitle,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -263,7 +269,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               SizedBox(height: 15),
-              RegisterTextField(
+              EditProfileTextField(
                 hintText: "Masukan Nama Sekolah Anda",
                 title: "Nama Sekolah",
                 controller: sekolahNameController,
@@ -278,8 +284,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 }
 
-class RegisterTextField extends StatelessWidget {
-  const RegisterTextField({
+class EditProfileTextField extends StatelessWidget {
+  const EditProfileTextField({
     Key? key,
     required this.title,
     required this.hintText,
@@ -294,39 +300,33 @@ class RegisterTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        SizedBox(height: 5),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 14),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Colors.white,
-            border: Border.all(
-              color: R.colors.greyBorderEmail,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 14,
+              color: R.colors.greySubtitle,
+              fontWeight: FontWeight.w600,
             ),
           ),
-          child: TextField(
+          SizedBox(height: 5),
+          TextField(
             enabled: enabled,
             controller: controller,
             decoration: InputDecoration(
-              border: InputBorder.none,
+              //border: InputBorder.none,
               hintText: hintText,
               hintStyle: TextStyle(
                 color: R.colors.greyHintText,
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

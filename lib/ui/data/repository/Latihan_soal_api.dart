@@ -82,10 +82,40 @@ class LatihanSoalApi {
     return result;
   }
 
-  Future<NetworkResponse> postRegister(body) async {
+  Future<NetworkResponse> getResult(id) async {
+    final result = await _getRequest(
+      endpoint: Urls.exerciseResult,
+      param: {
+        "exercise_id": id,
+        "user_email": UserEmail.getUserEmail(),
+      },
+    );
+    return result;
+  }
+
+  // Future<NetworkResponse> postRegister(body) async {
+  //   final result = await _postRequest(
+  //     endpoint: Urls.usersRegistrasi,
+  //     body: body,
+  //   );
+  //   return result;
+  // }
+
+  Future<NetworkResponse> postQuestionList(id) async {
     final result = await _postRequest(
-      endpoint: Urls.usersRegistrasi,
-      body: body,
+      endpoint: Urls.exerciseQuestionList,
+      body: {
+        "exercise_id": id,
+        "user_email": UserEmail.getUserEmail(),
+      },
+    );
+    return result;
+  }
+
+  Future<NetworkResponse> postStudentAnswer(payload) async {
+    final result = await _postRequest(
+      endpoint: Urls.submitExerciseAnswers,
+      body: payload,
     );
     return result;
   }

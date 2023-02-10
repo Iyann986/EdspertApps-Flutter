@@ -13,12 +13,19 @@ import '../../data/models/user_response.dart';
 import '../../data/repository/auth_repository.dart';
 import '../auth/register_page/register_page.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
   static const String route = "splash_screen";
 
   @override
-  Widget build(BuildContext context) {
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
     Timer(
       Duration(seconds: 5),
       () async {
@@ -29,9 +36,9 @@ class SplashScreen extends StatelessWidget {
           if (dataUser.status == Status.success) {
             final data = UserResponse.fromJson(dataUser.data!);
             if (data.status == 1) {
-              Navigator.of(context).pushNamed(BottomNavBar.route);
+              Navigator.of(context).pushReplacementNamed(BottomNavBar.route);
             } else {
-              Navigator.of(context).pushNamed(RegisterPage.route);
+              Navigator.of(context).pushReplacementNamed(RegisterPage.route);
             }
           }
         } else {
@@ -39,7 +46,10 @@ class SplashScreen extends StatelessWidget {
         }
       },
     );
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: R.colors.primary,
       body: Center(

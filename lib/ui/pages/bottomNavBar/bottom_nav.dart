@@ -68,12 +68,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         _pageController.animateToPage(selectedIndex,
                             duration: Duration(milliseconds: 500),
                             curve: Curves.bounceInOut);
+                        setState(() {});
                       },
                       child: Column(
                         children: [
                           Image.asset(
                             R.assets.icHome,
                             height: 25,
+                            color: selectedIndex == 0 ? null : Colors.grey,
                           ),
                           Text("Home"),
                         ],
@@ -113,12 +115,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         _pageController.animateToPage(selectedIndex,
                             duration: Duration(milliseconds: 500),
                             curve: Curves.easeInOut);
+                        setState(() {});
                       },
                       child: Column(
                         children: [
                           Image.asset(
                             R.assets.icProfile,
                             height: 25,
+                            color: selectedIndex == 1 ? null : Colors.grey,
                           ),
                           Text("Profile"),
                         ],
