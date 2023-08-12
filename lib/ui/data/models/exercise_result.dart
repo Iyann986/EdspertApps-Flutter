@@ -12,7 +12,7 @@ class ExerciseResultResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
     if (this.data != null) {
@@ -35,7 +35,7 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (exercise != null) {
       data['exercise'] = exercise!.toJson();
     }
@@ -114,7 +114,7 @@ class Exercise {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['exercise_id'] = exerciseId;
     data['exercise_code'] = exerciseCode;
     data['file_course'] = fileCourse;
@@ -156,7 +156,7 @@ class Result {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['jumlah_benar'] = jumlahBenar;
     data['jumlah_salah'] = jumlahSalah;
     data['jumlah_tidak'] = jumlahTidak;

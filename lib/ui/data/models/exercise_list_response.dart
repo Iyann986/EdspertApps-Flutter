@@ -17,7 +17,7 @@ class ExerciseListResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
     if (this.data != null) {
@@ -56,7 +56,7 @@ class ExerciseListData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['exercise_id'] = exerciseId;
     data['exercise_title'] = exerciseTitle;
     data['access_type'] = accessType;

@@ -82,10 +82,10 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
                           List<String> answer = [];
                           List<String> questionID = [];
 
-                          questionList!.data!.forEach((element) {
+                          for (var element in questionList!.data!) {
                             questionID.add(element.bankQuestionId!);
                             answer.add(element.studentAnswer!);
-                          });
+                          }
 
                           final payload = {
                             "user_email": UserEmail.getUserEmail(),

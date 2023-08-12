@@ -17,7 +17,7 @@ class QuestionListResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
     if (this.data != null) {
@@ -80,7 +80,7 @@ class QuestionListData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['exercise_id_fk'] = exerciseIdFk;
     data['bank_question_id'] = bankQuestionId;
     data['question_title'] = questionTitle;
