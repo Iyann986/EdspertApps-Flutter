@@ -1,5 +1,4 @@
 import 'package:finalproject_edspertapp/ui/constants/r.dart';
-import 'package:finalproject_edspertapp/ui/data/models/exercise_result.dart';
 import 'package:finalproject_edspertapp/ui/data/models/network_response.dart';
 import 'package:finalproject_edspertapp/ui/data/models/question_list_response.dart';
 import 'package:finalproject_edspertapp/ui/data/repository/Latihan_soal_api.dart';
@@ -40,7 +39,6 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getQuestionList();
   }
@@ -49,20 +47,20 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Latihan Soal"),
+        title: const Text("Latihan Soal"),
       ),
 
       /// Button Submit
       bottomNavigationBar: _controller == null
-          ? SizedBox(height: 0)
+          ? const SizedBox(height: 0)
           : Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: R.colors.primary,
-                        fixedSize: Size(153, 33),
+                        backgroundColor: R.colors.primary,
+                        fixedSize: const Size(153, 33),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         )),
@@ -74,9 +72,10 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
                           builder: (context) {
-                            return ButtomshetConfirmation();
+                            return const ButtomshetConfirmation();
                           },
                         );
+                        // ignore: avoid_print
                         print(result);
                         if (result == true) {
                           //print("Kirim ke bc");
@@ -94,6 +93,7 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
                             "bank_question_id": questionID,
                             "student_answer": answer,
                           };
+                          // ignore: avoid_print
                           print(payload);
 
                           final result =
@@ -108,7 +108,7 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
                             ));
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                 content: Text("Submit gagal silahkan ulangi"),
                               ),
                             );
@@ -122,7 +122,7 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
                       _controller?.index == questionList!.data!.length - 1
                           ? "Kumpulin"
                           : "Selanjutnya",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                       ),
                     ),
@@ -131,7 +131,7 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
               ),
             ),
       body: questionList == null
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
                 /// Tabbar nomor soal
@@ -142,7 +142,7 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
                       questionList!.data!.length,
                       (index) => Text(
                         '${index + 1}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                         ),
                       ),
@@ -153,7 +153,7 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
                 /// TabbarView soal dan pilihan jawaban
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: TabBarView(
                         controller: _controller,
                         children: List.generate(
@@ -179,7 +179,7 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
                                         padding: EdgeInsets.zero,
                                       ),
                                       "p": Style(
-                                        fontSize: FontSize(14),
+                                        fontSize: const FontSize(14),
                                       )
                                     },
                                   ),
@@ -238,8 +238,8 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
         setState(() {});
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        margin: EdgeInsets.symmetric(vertical: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(vertical: 2),
         decoration: BoxDecoration(
           color: answerCheck ? Colors.blue.withOpacity(0.4) : Colors.white,
           border: Border.all(
@@ -251,7 +251,7 @@ class _KerjakanLatihanSoalpageState extends State<KerjakanLatihanSoalpage>
         child: Row(
           children: [
             Text(
-              option + ".",
+              "$option.",
               style: TextStyle(
                 color: answerCheck ? Colors.white : Colors.black,
               ),
@@ -288,8 +288,8 @@ class _ButtomshetConfirmationState extends State<ButtomshetConfirmation> {
   Widget build(BuildContext context) {
     return Container(
       child: Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
@@ -307,15 +307,15 @@ class _ButtomshetConfirmationState extends State<ButtomshetConfirmation> {
                 color: R.colors.greySubtitle,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Image.asset(R.assets.imgSucces),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Text("Kumpulkan latihan soal sekarang?"),
-            Text("Boleh langsung kumpulin dong"),
+            const Text("Kumpulkan latihan soal sekarang?"),
+            const Text("Boleh langsung kumpulin dong"),
             Row(
               children: [
                 Expanded(
@@ -323,16 +323,16 @@ class _ButtomshetConfirmationState extends State<ButtomshetConfirmation> {
                     onPressed: () {
                       Navigator.of(context).pop(false);
                     },
-                    child: Text("Nanti Dulu"),
+                    child: const Text("Nanti Dulu"),
                   ),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop(true);
                     },
-                    child: Text("Ya"),
+                    child: const Text("Ya"),
                   ),
                 )
               ],

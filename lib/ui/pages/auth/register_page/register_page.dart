@@ -54,15 +54,15 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF0F3F5),
+      backgroundColor: const Color(0xffF0F3F5),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight + 40),
+        preferredSize: const Size.fromHeight(kToolbarHeight + 40),
         child: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
           // backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
-          title: Text(
+          iconTheme: const IconThemeData(color: Colors.black),
+          title: const Text(
             "Yuk isi data diri",
             style: TextStyle(
               fontSize: 20,
@@ -70,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
               color: Colors.black,
             ),
           ),
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(25.0),
               bottomRight: Radius.circular(25.0),
@@ -92,6 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 "foto": UserEmail.getUserPhotoUrl(),
                 // "jenjang": schoolLevel,
               };
+              // ignore: avoid_print
               print(json);
               final result = await AuthRepository().postRegister(json);
               if (result.status == Status.success) {
@@ -109,7 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 }
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text("Terjadi Error, Silahkan Ulang Kembali"),
                   ),
                 );
@@ -140,21 +141,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 title: "Email",
                 enabled: false,
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               RegisterTextField(
                 hintText: "Masukan Nama Lengkap Anda",
                 title: "Nama Lengkap",
                 controller: fullNameController,
               ),
-              SizedBox(height: 15),
-              Text(
+              const SizedBox(height: 15),
+              const Text(
                 "Jenis Kelamin",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Expanded(
@@ -225,18 +226,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 15),
-              Text(
+              const SizedBox(height: 15),
+              const Text(
                 "Kelas",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 14),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.white,
@@ -250,8 +251,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     items: classSma
                         .map(
                           (e) => DropdownMenuItem<String>(
-                            child: Text(e),
                             value: e,
+                            child: Text(e),
                           ),
                         )
                         .toList(),
@@ -262,7 +263,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               RegisterTextField(
                 hintText: "Masukan Nama Sekolah Anda",
                 title: "Nama Sekolah",
@@ -299,14 +300,14 @@ class RegisterTextField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 14),
+          padding: const EdgeInsets.symmetric(horizontal: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: Colors.white,

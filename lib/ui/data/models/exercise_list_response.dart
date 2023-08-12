@@ -11,15 +11,15 @@ class ExerciseListResponse {
     if (json['data'] != null) {
       data = <ExerciseListData>[];
       json['data'].forEach((v) {
-        data!.add(new ExerciseListData.fromJson(v));
+        data!.add(ExerciseListData.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -56,14 +56,14 @@ class ExerciseListData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['exercise_id'] = this.exerciseId;
-    data['exercise_title'] = this.exerciseTitle;
-    data['access_type'] = this.accessType;
-    data['icon'] = this.icon;
-    data['exercise_user_status'] = this.exerciseUserStatus;
-    data['jumlah_soal'] = this.jumlahSoal;
-    data['jumlah_done'] = this.jumlahDone;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['exercise_id'] = exerciseId;
+    data['exercise_title'] = exerciseTitle;
+    data['access_type'] = accessType;
+    data['icon'] = icon;
+    data['exercise_user_status'] = exerciseUserStatus;
+    data['jumlah_soal'] = jumlahSoal;
+    data['jumlah_done'] = jumlahDone;
     return data;
   }
 }

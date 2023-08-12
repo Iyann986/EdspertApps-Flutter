@@ -41,7 +41,9 @@ class _HomePageState extends State<HomePage> {
     // Get any messages which caused the application to open from
     // a terminated state.
     final tokenFcm = await FirebaseMessaging.instance.getToken();
+    // ignore: avoid_print
     print("tokenfcm: $tokenFcm");
+    // ignore: unused_local_variable
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
 
@@ -63,16 +65,20 @@ class _HomePageState extends State<HomePage> {
       sound: true,
     );
 
+    // ignore: avoid_print
     print('User granted permission: ${settings.authorizationStatus}');
 
     // Also handle any interaction when the app is in the background via a
     // Stream listener
     FirebaseMessaging.onMessageOpenedApp.listen((event) {});
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      // ignore: avoid_print
       print('Got a message whilst in the foreground!');
+      // ignore: avoid_print
       print('Message data: ${message.data}');
 
       if (message.notification != null) {
+        // ignore: avoid_print
         print('Message also contained a notification: ${message.notification}');
       }
     });
@@ -86,7 +92,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getCourse();
     getBanner();
@@ -110,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
                       "Terbaru",
                       style: GoogleFonts.poppins(
@@ -119,18 +124,18 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 11,
                   ),
                   bannerResponse == null
-                      ? Container(
+                      ? const SizedBox(
                           height: 70,
                           width: double.infinity,
                           child: Center(
                             child: CircularProgressIndicator(),
                           ),
                         )
-                      : Container(
+                      : SizedBox(
                           height: 150,
                           child: ListView.builder(
                             itemCount: bannerResponse!.data!.length,
@@ -152,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 70,
             ),
           ],
@@ -163,7 +168,7 @@ class _HomePageState extends State<HomePage> {
 
   Container _buildHomeListMapel(CourseResponse? list) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 21),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 21),
       child: Column(
         children: [
           Row(
@@ -175,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -196,7 +201,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           list == null
-              ? Container(
+              ? const SizedBox(
                   height: 70,
                   width: double.infinity,
                   child: Center(
@@ -205,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                 )
               : ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: list.data!.length > 3 ? 3 : list.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     final currentMapel = list.data![index];
@@ -244,7 +249,7 @@ class _HomePageState extends State<HomePage> {
       width: double.infinity,
       child: Stack(
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.4,
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -287,7 +292,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hi, " + (dataUser?.userName ?? "Nama User"),
+                  "Hi, ${dataUser?.userName ?? "Nama User"}",
                   style: GoogleFonts.poppins().copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -333,21 +338,21 @@ class MapelWidget extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: EdgeInsets.only(bottom: 11),
-      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 21),
+      margin: const EdgeInsets.only(bottom: 11),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 21),
       child: Row(
         children: [
           Container(
             height: 53,
             width: 53,
-            padding: EdgeInsets.all(13),
+            padding: const EdgeInsets.all(13),
             decoration: BoxDecoration(
               color: R.colors.whiteTexts,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(R.assets.icMtk),
           ),
-          SizedBox(
+          const SizedBox(
             width: 9,
           ),
           Expanded(
@@ -369,7 +374,7 @@ class MapelWidget extends StatelessWidget {
                     color: R.colors.greyText,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Stack(

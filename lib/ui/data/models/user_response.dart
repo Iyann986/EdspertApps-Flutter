@@ -8,13 +8,13 @@ class UserResponse {
   UserResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new UserData.fromJson(json['data']) : null;
+    data = json['data'] != null ? UserData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -57,16 +57,16 @@ class UserData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['iduser'] = this.iduser;
-    data['user_name'] = this.userName;
-    data['user_email'] = this.userEmail;
-    data['user_foto'] = this.userFoto;
-    data['user_asal_sekolah'] = this.userAsalSekolah;
-    data['kelas'] = this.kelas;
-    data['date_create'] = this.dateCreate;
-    data['user_gender'] = this.userGender;
-    data['user_status'] = this.userStatus;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['iduser'] = iduser;
+    data['user_name'] = userName;
+    data['user_email'] = userEmail;
+    data['user_foto'] = userFoto;
+    data['user_asal_sekolah'] = userAsalSekolah;
+    data['kelas'] = kelas;
+    data['date_create'] = dateCreate;
+    data['user_gender'] = userGender;
+    data['user_status'] = userStatus;
     return data;
   }
 }

@@ -26,7 +26,6 @@ class _ListPaketSoalPageState extends State<ListPaketSoalPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getExerciseListRespone();
   }
@@ -36,14 +35,14 @@ class _ListPaketSoalPageState extends State<ListPaketSoalPage> {
     return Scaffold(
       backgroundColor: R.colors.whiteTexts,
       appBar: AppBar(
-        title: Text("Paket Soal"),
+        title: const Text("Paket Soal"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Pilih Paket Soal",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -52,7 +51,7 @@ class _ListPaketSoalPageState extends State<ListPaketSoalPage> {
             ),
             Expanded(
               child: exerciseListResponse == null
-                  ? Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator())
                   :
                   // : SingleChildScrollView(
                   //     child: Wrap(
@@ -122,7 +121,7 @@ class PaketSoalWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.grey.withOpacity(0.2),
@@ -132,10 +131,10 @@ class PaketSoalWidget extends StatelessWidget {
                 width: 14,
               ),
             ),
-            SizedBox(height: 7),
+            const SizedBox(height: 7),
             Text(
               data.exerciseTitle!,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
               ),

@@ -2,8 +2,6 @@ import 'package:finalproject_edspertapp/ui/constants/r.dart';
 import 'package:finalproject_edspertapp/ui/pages/auth/login_page/login_page.dart';
 import 'package:finalproject_edspertapp/ui/pages/auth/register_page/register_page.dart';
 import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/bottom_nav.dart';
-import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/home_mapel_widget.dart';
-import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/list_paket_soal_page.dart';
 import 'package:finalproject_edspertapp/ui/pages/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -15,6 +13,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
 
+  // ignore: avoid_print
   print("Handling a background message: ${message.messageId}");
 }
 

@@ -7,7 +7,6 @@ import 'package:finalproject_edspertapp/ui/data/repository/auth_repository.dart'
 import 'package:finalproject_edspertapp/ui/helpers/preference_helper.dart';
 import 'package:finalproject_edspertapp/ui/helpers/user_email.dart';
 import 'package:finalproject_edspertapp/ui/pages/auth/login_page/login_page.dart';
-import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -64,8 +63,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
         centerTitle: true,
         elevation: 0,
         backgroundColor: R.colors.primary,
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Text(
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text(
           "Edit Akun",
           style: TextStyle(
             fontSize: 20,
@@ -95,6 +94,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 "foto": UserEmail.getUserPhotoUrl(),
                 // "jenjang": schoolLevel,
               };
+              // ignore: avoid_print
               print(json);
               final result = await AuthRepository().postUpdateUser(json);
               if (result.status == Status.success) {
@@ -111,7 +111,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 }
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text("Terjadi Error, Silahkan Ulang Kembali"),
                   ),
                 );
@@ -142,13 +142,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 title: "Email",
                 enabled: false,
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               EditProfileTextField(
                 hintText: "Masukan Nama Lengkap Anda",
                 title: "Nama Lengkap",
                 controller: fullNameController,
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Text(
                 "Jenis Kelamin",
                 style: TextStyle(
@@ -157,7 +157,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Expanded(
@@ -230,7 +230,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                 ],
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Text(
                 "Kelas",
                 style: TextStyle(
@@ -239,10 +239,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 14),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.white,
@@ -256,8 +256,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     items: classSma
                         .map(
                           (e) => DropdownMenuItem<String>(
-                            child: Text(e),
                             value: e,
+                            child: Text(e),
                           ),
                         )
                         .toList(),
@@ -268,7 +268,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               EditProfileTextField(
                 hintText: "Masukan Nama Sekolah Anda",
                 title: "Nama Sekolah",
@@ -313,7 +313,7 @@ class EditProfileTextField extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextField(
             enabled: enabled,
             controller: controller,

@@ -5,7 +5,6 @@ import 'package:finalproject_edspertapp/ui/data/repository/auth_repository.dart'
 import 'package:finalproject_edspertapp/ui/helpers/preference_helper.dart';
 import 'package:finalproject_edspertapp/ui/pages/auth/register_page/register_page.dart';
 import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/bottom_nav.dart';
-import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF3F7F8),
+      backgroundColor: const Color(0xffF3F7F8),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
         child: Column(
@@ -82,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
               style: GoogleFonts.poppins().copyWith(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xff6A7483)),
+                  color: const Color(0xff6A7483)),
             ),
             const Spacer(),
             ButtonLogin(
@@ -103,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text("Gagal Masuk"),
                       duration: Duration(seconds: 2),
                     ),

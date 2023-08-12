@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:finalproject_edspertapp/ui/constants/R/urls.dart';
-import 'package:finalproject_edspertapp/ui/data/models/exercise_result.dart';
 import 'package:finalproject_edspertapp/ui/data/models/network_response.dart';
 import 'package:finalproject_edspertapp/ui/helpers/user_email.dart';
 

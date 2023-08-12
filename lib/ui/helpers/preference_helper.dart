@@ -12,11 +12,13 @@ class PreferenceHelper {
   }
 
   Future _saveString(key, data) async {
+    // ignore: no_leading_underscores_for_local_identifiers
     final _pref = await sharePref();
     await _pref.setString(key, data);
   }
 
   Future<String?> _getString(key) async {
+    // ignore: no_leading_underscores_for_local_identifiers
     final _pref = await sharePref();
     return _pref.getString(key);
   }

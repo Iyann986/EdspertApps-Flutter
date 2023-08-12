@@ -4,8 +4,6 @@ import 'package:finalproject_edspertapp/ui/constants/r.dart';
 import 'package:finalproject_edspertapp/ui/helpers/user_email.dart';
 import 'package:finalproject_edspertapp/ui/pages/auth/login_page/login_page.dart';
 import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/bottom_nav.dart';
-import 'package:finalproject_edspertapp/ui/pages/bottomNavBar/home/home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/network_response.dart';
@@ -24,10 +22,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Timer(
-      Duration(seconds: 5),
+      const Duration(seconds: 5),
       () async {
         final user = UserEmail.getUserEmail();
 

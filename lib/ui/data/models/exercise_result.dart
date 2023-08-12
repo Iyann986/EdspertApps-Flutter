@@ -8,13 +8,13 @@ class ExerciseResultResponse {
   ExerciseResultResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -29,20 +29,18 @@ class Data {
   Data({this.exercise, this.result});
 
   Data.fromJson(Map<String, dynamic> json) {
-    exercise = json['exercise'] != null
-        ? new Exercise.fromJson(json['exercise'])
-        : null;
-    result =
-        json['result'] != null ? new Result.fromJson(json['result']) : null;
+    exercise =
+        json['exercise'] != null ? Exercise.fromJson(json['exercise']) : null;
+    result = json['result'] != null ? Result.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.exercise != null) {
-      data['exercise'] = this.exercise!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    if (exercise != null) {
+      data['exercise'] = exercise!.toJson();
     }
-    if (this.result != null) {
-      data['result'] = this.result!.toJson();
+    if (result != null) {
+      data['result'] = result!.toJson();
     }
     return data;
   }
@@ -116,27 +114,27 @@ class Exercise {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['exercise_id'] = this.exerciseId;
-    data['exercise_code'] = this.exerciseCode;
-    data['file_course'] = this.fileCourse;
-    data['icon'] = this.icon;
-    data['exercise_title'] = this.exerciseTitle;
-    data['exercise_description'] = this.exerciseDescription;
-    data['exercise_instruction'] = this.exerciseInstruction;
-    data['count_question'] = this.countQuestion;
-    data['class_fk'] = this.classFk;
-    data['course_fk'] = this.courseFk;
-    data['course_content_fk'] = this.courseContentFk;
-    data['sub_course_content_fk'] = this.subCourseContentFk;
-    data['creator_id'] = this.creatorId;
-    data['creator_name'] = this.creatorName;
-    data['exam_from'] = this.examFrom;
-    data['access_type'] = this.accessType;
-    data['exercise_order'] = this.exerciseOrder;
-    data['exercise_status'] = this.exerciseStatus;
-    data['date_create'] = this.dateCreate;
-    data['date_update'] = this.dateUpdate;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['exercise_id'] = exerciseId;
+    data['exercise_code'] = exerciseCode;
+    data['file_course'] = fileCourse;
+    data['icon'] = icon;
+    data['exercise_title'] = exerciseTitle;
+    data['exercise_description'] = exerciseDescription;
+    data['exercise_instruction'] = exerciseInstruction;
+    data['count_question'] = countQuestion;
+    data['class_fk'] = classFk;
+    data['course_fk'] = courseFk;
+    data['course_content_fk'] = courseContentFk;
+    data['sub_course_content_fk'] = subCourseContentFk;
+    data['creator_id'] = creatorId;
+    data['creator_name'] = creatorName;
+    data['exam_from'] = examFrom;
+    data['access_type'] = accessType;
+    data['exercise_order'] = exerciseOrder;
+    data['exercise_status'] = exerciseStatus;
+    data['date_create'] = dateCreate;
+    data['date_update'] = dateUpdate;
     return data;
   }
 }
@@ -158,11 +156,11 @@ class Result {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['jumlah_benar'] = this.jumlahBenar;
-    data['jumlah_salah'] = this.jumlahSalah;
-    data['jumlah_tidak'] = this.jumlahTidak;
-    data['jumlah_score'] = this.jumlahScore;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['jumlah_benar'] = jumlahBenar;
+    data['jumlah_salah'] = jumlahSalah;
+    data['jumlah_tidak'] = jumlahTidak;
+    data['jumlah_score'] = jumlahScore;
     return data;
   }
 }

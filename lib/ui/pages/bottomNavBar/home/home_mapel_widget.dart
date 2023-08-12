@@ -13,7 +13,7 @@ class HomeMapelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pilih Pelajaran"),
+        title: const Text("Pilih Pelajaran"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 22),
